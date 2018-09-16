@@ -21,7 +21,7 @@ public class Player {
     public void attack(Monster monster) {
         double randomDamage = damageMin  + (damageMax - damageMin) * r.nextDouble();
         randomDamage = round(randomDamage,2);
-        System.out.println("You did " + randomDamage + " damage!");
+        Controller.textArea.setText("You did " + randomDamage + " damage!");
         monster.damage(randomDamage);
 
     }
@@ -55,7 +55,7 @@ public class Player {
     public void damage(double dmg){
         health-=dmg;
         health = round(health,2);
-        System.out.println("Your remaining health:" + health);
+        Controller.textArea.setText(Controller.textArea.getText() + "\n" + "Your remaining health:" + health);
     }
 
     public Room getPlayerPosition() {

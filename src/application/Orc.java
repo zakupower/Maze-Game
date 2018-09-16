@@ -21,7 +21,7 @@ public class Orc implements Monster {
     public void attack(Player player) {
         double randomDamage = damageMin  + (damageMax - damageMin) * r.nextDouble();
         randomDamage = round(randomDamage,2);
-        System.out.println(name + " did " + randomDamage + " damage!");
+        Controller.textArea.setText(Controller.textArea.getText() + "\n" + name + " did " + randomDamage + " damage!");
         player.damage(randomDamage);
     }
 
@@ -41,7 +41,7 @@ public class Orc implements Monster {
     public void damage(double damage) {
         health -= damage;
         health = round(health,2);
-        System.out.println(name + " remaining health:" + health);
+        Controller.textArea.setText(Controller.textArea.getText() + "\n" + name + " remaining health:" + health);
     }
 
     @Override

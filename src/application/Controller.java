@@ -2,11 +2,14 @@ package application;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.stage.Stage;
 
 import javax.imageio.ImageIO;
 import java.io.File;
@@ -15,6 +18,9 @@ import java.io.IOException;
 public class Controller {
     @FXML
     Label testLabel;
+    static TextArea textArea;
+    @FXML
+    TextArea textAreaInstance;
     Maze maze = new Maze();
     Player player = new Player();
     @FXML
@@ -46,6 +52,7 @@ public class Controller {
 
         player.setPlayerPosition(room1);
         testLabel.setGraphic(room1.getImageView());
+        textArea = textAreaInstance;
     }
     @FXML
     public void keyPressed(KeyEvent ev) throws IOException {
@@ -75,24 +82,25 @@ public class Controller {
         }
 
         } else {
-            System.out.println("YOU ARE DEAD");
+            textArea.setText("YOU ARE DEAD!!!!");
         }
 
 
     }
     private void tryToMovePlayer(Direction direction){
         if(player.getPlayerPosition().hasMonster()) {
-            System.out.println("MONSTER IN ROOM CAN'T MOVE");
+            textArea.setText("MONSTER IN ROOM CAN'T MOVE!!!");
         } else {
             if (player.tryToMove(direction)) {
                 testLabel.setGraphic(player.getPlayerPosition().getImageView());
                 if (player.getPlayerPosition().isWinningRoom()) {
-                    System.out.println("WINNNERRRRRRRRRR");
+                    textArea.setText("WINERRRRRRRRRRRRRRRRRR!!!!!!!!!");
                 }
             } else {
-                System.out.println("NO EXIT THAT WAY");
+                textArea.setText("NO EXIT THAT WAY!!!");
             }
         }
     }
+
 }
 
